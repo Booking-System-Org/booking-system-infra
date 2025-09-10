@@ -6,10 +6,10 @@ RUN := run --rm
 DOCKER_COMPOSE := docker-compose -f $(COMPOSE_FILE) --project-name $(PROJECT_NAME)
 DOCKER_COMPOSE_RUN := $(DOCKER_COMPOSE) $(RUN)
 
-.PHONY: start stop restart build install provision install-migrator migration-create migration-run migration-revert env-setup
+.PHONY: start stop restart build install provision install-migrator migration-create migration-run migration-revert env-setup seed
 
 .NOTPARALLEL: provision
-provision: env-setup build install start migration-run
+provision: env-setup build install start migration-run seed
 
 env-setup:
 	@if [ ! -f .env ]; then \
@@ -49,3 +49,6 @@ migration-run:
 
 migration-revert:
 	$(DOCKER_COMPOSE_RUN) db-migrator npm run migration:revert
+
+seed:
+	$(DOCKER_COMPOSE_RUN) db-migrator npm run seed
