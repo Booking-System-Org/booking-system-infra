@@ -6,18 +6,18 @@ RUN := run --rm
 DOCKER_COMPOSE := docker-compose -f $(COMPOSE_FILE) --project-name $(PROJECT_NAME)
 DOCKER_COMPOSE_RUN := $(DOCKER_COMPOSE) $(RUN)
 
-.PHONY: start stop restart build install provision install-migrator migration-create migration-run migration-revert env-setup seed
+.PHONY: start stop restart build install provision migration-create migration-run migration-revert env-setup seed
 
 .NOTPARALLEL: provision
 provision: env-setup build install start migration-run seed
 
 env-setup:
 	@if [ ! -f .env ]; then \
-		echo "Создание .env файла из env.example..."; \
+		echo "Creating .env file from env.example..."; \
 		cp env.example .env; \
-		echo ".env файл создан! Измените переменные если необходимо."; \
+		echo ".env file created! Change variables if necessary."; \
 	else \
-		echo ".env файл уже существует."; \
+		echo ".env file already exists."; \
 	fi
 
 start:
@@ -36,8 +36,7 @@ build:
 clean:
 	$(DOCKER_COMPOSE) down -v
 
-install: install-migrator
-install-migrator:
+install:
 	$(DOCKER_COMPOSE_RUN) db-migrator npm install
 
 # Команды для работы с миграциями

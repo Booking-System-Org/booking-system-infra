@@ -7,7 +7,7 @@
     "migration:create": "npm run typeorm -- migration:create",
     "migration:run": "npm run typeorm -- -d ./src/migrator/data-source.ts migration:run",
     "migration:revert": "npm run typeorm -- -d ./src/migrator/data-source.ts migration:revert",
-    "seed": "ts-node src/migrator/seeds/restraunts-seed.ts"
+    "seed": "ts-node src/migrator/seeds/restaurants-seed.ts"
   },
   "dependencies": {
     "pg": "^8.13.1",
