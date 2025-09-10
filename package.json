@@ -1,0 +1,29 @@
+{
+  "name": "booking-system-infra",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "typeorm": "./node_modules/.bin/ts-node ./node_modules/typeorm/cli.js",
+    "migration:create": "npm run typeorm -- migration:create",
+    "migration:run": "npm run typeorm -- -d ./src/migrator/data-source.ts migration:run",
+    "migration:revert": "npm run typeorm -- -d ./src/migrator/data-source.ts migration:revert"
+  },
+  "dependencies": {
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Booking-System-Org/booking-system-infra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
